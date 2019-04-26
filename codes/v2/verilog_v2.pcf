@@ -1,0 +1,21 @@
+set_io clk R9
+
+
+set_io rst B11
+set_io flag D8
+
+set_io data[8] C3
+set_io data[7] A2
+set_io data[6] A5
+set_io data[5] A9
+set_io  data[4] A10
+set_io  data[3] A11
+set_io  data[2] B3
+set_io  data[1] B4
+set_io  data[0] B5
+
+set_io  out[2] B8
+set_io  out[1] B9
+set_io  out[0] B10
+
+

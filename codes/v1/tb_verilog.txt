@@ -1,0 +1,40 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns / 1ps
+module lfsr_tb();
+reg clk_tb;
+reg rst_tb;
+reg [11:0] data_tb;
+wire [4:0] out_tb;
+wire [4:0] temp_tb;
+  
+  
+
+initial
+begin
+    clk_tb = 0;
+    rst_tb = 1;
+    data_tb=12'b101010001000;
+    #5;
+    
+    rst_tb = 0;
+    #300;
+  $finish;
+end
+
+always
+begin
+    #5;
+    clk_tb = ~ clk_tb;
+end
+
+  lfsr DUT(out_tb,clk_tb,rst_tb,data_tb,temp_tb);
+
+initial begin
+  $dumpfile("dump.vcd");
+  $dumpvars(1);
+  #300;
+  $finish;
+end
+  
+endmodule

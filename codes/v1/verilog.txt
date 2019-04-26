@@ -1,0 +1,42 @@
+// Code your design here
+`timescale 1ns / 1ps
+module lfsr (out, clk, rst,data,temp);
+
+  output reg [4:0] out;
+  output reg [4:0] temp;
+  input wire [11:0] data;
+  input clk, rst;
+
+  wire f1;
+  wire f2;
+  wire f3;
+  integer x = 0;
+   
+  //assign f1 = (out[0] ^ data[x]);
+  //assign f2 = (out[0] ^ out[4]);
+  //assign f3 = (out[0] ^ out[3]);
+
+always @(posedge clk, posedge rst)
+  begin
+    if (rst) begin
+      out = 5'b00000;
+      x = 0;
+    end
+    else begin
+      //temp = {out[1],out[2],f3,f2,f1};
+      $display("data: %1b", data[11-x]);
+      $display("out4: %b", out[4]);
+      $display("out0: %b", out[0]);
+      temp = {out[3],out[2],out[4] ^ out[1],out[4] ^ out[0],out[4] ^ data[11-x]};
+      out = {temp};
+      $display("temp: %4b", temp);
+      $display("out: %4b", out);
+      if (x==11) begin
+        x=0;
+      end
+      else begin
+        x=x+1;
+      end
+    end
+  end
+endmodule
